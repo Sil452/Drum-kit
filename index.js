@@ -1,7 +1,6 @@
-for(let i = 0; i < document.querySelectorAll(".drum").length; i++){
-  document.querySelectorAll(".drum")[i].addEventListener('click', function () {
-  
-  switch(this.innerHTML) {
+
+function makeSounds(key){
+  switch(key) {
     case "w":
       let crash = new Audio('sounds/crash.mp3')
       crash.play()
@@ -31,9 +30,18 @@ for(let i = 0; i < document.querySelectorAll(".drum").length; i++){
       kickBass.play()
       break;
 
-     default:
-      let defaultAudio = new Audio('sounds/tom-1.mp3')
-      defaultAudio.play()
+    default:
+      break;
   }
+}
+
+for(let i = 0; i < document.querySelectorAll(".drum").length; i++){
+  document.querySelectorAll(".drum")[i].addEventListener('click', function (){
+    let innerHtmlButton = this.innerHTML;
+    makeSounds(innerHtmlButton);
   })
 }
+
+  document.addEventListener('keydown', function (event){
+    makeSounds(event.key)
+  })
